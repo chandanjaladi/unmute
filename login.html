@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unmute - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      color: #222;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 400px;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      background: #fafafa;
+    }
+    
+    .back-button {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #333;
+      transition: transform 0.2s ease;
+    }
+    
+    .back-button:hover {
+      transform: translateX(-3px);
+    }
+    
+    h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #555;
+      margin-left: 3px;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid #eaeaea;
+      font-size: 15px;
+      background: #f8f8f8;
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: #111;
+      background: #f5f5f5;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .error-message {
+      color: #e74c3c;
+      font-size: 13px;
+      margin-top: 5px;
+      display: none;
+      padding-left: 3px;
+    }
+    
+    .login-btn {
+      background: #111;
+      color: #fff;
+      border: none;
+      width: 100%;
+      padding: 14px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+    
+    .login-btn:hover {
+      background: #222;
+      transform: translateY(-2px);
+    }
+    
+    .signup-link {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .signup-link a {
+      color: #111;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    /* Shake animation for error */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+    
+    .shake {
+      animation: shake 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <button class="back-button" onclick="navigateBack()">←</button>
+  
+  <div class="container">
+    <h1>Login</h1>
+    
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autocomplete="username">
+        <div class="error-message" id="usernameError">Invalid username</div>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password">
+        <div class="error-message" id="passwordError">Incorrect password</div>
+      </div>
+      
+      <div class="error-message" id="generalError">Login failed. Please check your credentials.</div>
+      
+      <button type="submit" class="login-btn">Log In</button>
+    </form>
+    
+    <div class="signup-link">
+      Don't have an account? <a href="signup.html">Sign Up</a>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('loginForm');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const usernameError = document.getElementById('usernameError');
+      const passwordError = document.getElementById('passwordError');
+      const generalError = document.getElementById('generalError');
+      
+      // Get users from localStorage or initialize empty array
+      function getUsers() {
+        const users = localStorage.getItem('unmute_users');
+        return users ? JSON.parse(users) : [];
+      }
+      
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Reset error messages
+        usernameError.style.display = 'none';
+        passwordError.style.display = 'none';
+        generalError.style.display = 'none';
+        
+        // Get form values
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value;
+        
+        // Validation
+        let isValid = true;
+        
+        if (!username) {
+          usernameError.textContent = 'Username is required';
+          usernameError.style.display = 'block';
+          usernameInput.classList.add('shake');
+          setTimeout(() => usernameInput.classList.remove('shake'), 500);
+          isValid = false;
+        }
+        
+        if (!password) {
+          passwordError.textContent = 'Password is required';
+          passwordError.style.display = 'block';
+          passwordInput.classList.add('shake');
+          setTimeout(() => passwordInput.classList.remove('shake'), 500);
+          isValid = false;
+        }
+        
+        if (!isValid) return;
+        
+        // Check credentials against stored users
+        const users = getUsers();
+        const user = users.find(u => u.username === username);
+        
+        if (!user) {
+          usernameError.textContent = 'Username not found';
+          usernameError.style.display = 'block';
+          usernameInput.classList.add('shake');
+          setTimeout(() => usernameInput.classList.remove('shake'), 500);
+          return;
+        }
+        
+        if (user.password !== password) {
+          passwordError.textContent = 'Incorrect password';
+          passwordError.style.display = 'block';
+          passwordInput.classList.add('shake');
+          setTimeout(() => passwordInput.classList.remove('shake'), 500);
+          return;
+        }
+        
+        // Login successful
+        localStorage.setItem('unmute_currentUser', JSON.stringify({
+          name: user.name,
+          email: user.email,
+          username: user.username,
+          isLoggedIn: true
+        }));
+        
+        // Redirect to main page
+        window.location.href = 'index.html';
+      });
+      
+      // Remove shake class after animation completes
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.addEventListener('animationend', function() {
+          this.classList.remove('shake');
+        });
+      });
+    });
+
+    function navigateBack() {
+      // Ensure the intro won't show again when returning to index
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
