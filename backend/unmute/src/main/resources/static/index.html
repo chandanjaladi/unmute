@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unmute</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <div class="intro" id="intro">
+    <h1 id="unmuteTitle">Unmute</h1>
+    <div class="mic-container" id="micContainer">
+      <i class="fa-solid fa-microphone mic-icon" id="micIcon"></i>
+      <i class="fa-solid fa-microphone-slash mic-slash" id="micSlash"></i>
+    </div>
+  </div>
+
+  <div class="main-screen" id="mainScreen">
+    <div class="hamburger" onclick="togglePanel()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    
+    <h2 class="session-title">Create Session</h2>
+    
+    <div class="dropdowns">
+      <div class="select-container">
+        <label for="languageSelect">language</label>
+        <select id="languageSelect">
+          <option selected>Telugu</option>
+          <option>Hindi</option>
+          <option>English</option>
+          <option>Tamil</option>
+        </select>
+      </div>
+      
+      <div class="select-container">
+        <label for="timeSelect">duration</label>
+        <select id="timeSelect">
+          <option>5 mins</option>
+          <option>10 mins</option>
+          <option>15 mins</option>
+          <option>20 mins</option>
+          <option>25 mins</option>
+          <option selected>30 mins</option>
+          <option>35 mins</option>
+          <option>40 mins</option>
+          <option>45 mins</option>
+          <option>50 mins</option>
+          <option>55 mins</option>
+          <option>60 mins</option>
+        </select>
+      </div>
+    </div>
+    
+    <button class="unmute-btn pulse" onclick="goToPaymentPage()">Unmute</button>
+    
+    <div class="panel" id="settingsPanel">
+      <button class="back-btn" onclick="togglePanel()">←</button>
+      <div class="panel-header">
+        <h3>Menu</h3>
+      </div>
+      <!-- Panel items will be dynamically injected based on login status -->
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
