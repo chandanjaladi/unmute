@@ -1,10 +1,10 @@
-<!-- speaker-entry.html -->
+<!-- listener-login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Unmute - Speaker</title>
+    <title>Unmute - Listener Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <style>
@@ -30,7 +30,7 @@
         }
         h1 {
           font-size: 28px;
-          margin-bottom: 20px;
+          margin-bottom: 30px;
           font-weight: 600;
           text-align: center;
         }
@@ -57,7 +57,7 @@
           background: #f5f5f5;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
-        .proceed-btn {
+        .login-btn {
           background: #111;
           color: #fff;
           border: none;
@@ -69,21 +69,47 @@
           cursor: pointer;
           margin-top: 10px;
         }
-        .proceed-btn:hover {
+        .login-btn:hover {
           background: #222;
+        }
+        .alt-link {
+          text-align: center;
+          margin-top: 25px;
+          font-size: 14px;
+          color: #666;
+        }
+        .alt-link a {
+          color: #111;
+          text-decoration: none;
+          font-weight: 500;
+        }
+        .error-message {
+          color: #e74c3c;
+          font-size: 13px;
+          display: none;
+          margin-top: 10px;
+          text-align: center;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Enter Session</h1>
-    <form id="speakerForm">
+    <h1>Listener Login</h1>
+    <form id="listenerLoginForm">
         <div class="form-group">
-            <label for="name">Your Name (Optional)</label>
-            <input type="text" id="name" />
+            <label for="username">Username</label>
+            <input type="text" id="username" required />
         </div>
-        <button type="submit" class="proceed-btn">Join Session</button>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required />
+        </div>
+        <div class="error-message" id="loginError">Login failed. Check your credentials.</div>
+        <button type="submit" class="login-btn">Login</button>
     </form>
+    <div class="alt-link">
+        New here? <a href="listener-signup.html">Become a Listener</a>
+    </div>
 </div>
 
 <script src="/script.js"></script>

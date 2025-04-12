@@ -1,18 +1,13 @@
+<!-- listener-signup.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Unmute - Login</title>
+    <title>Unmute - Listener Signup</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <style>
-        * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-        }
-
         body {
           margin: 0;
           padding: 0;
@@ -25,7 +20,6 @@
           flex-direction: column;
           color: #222;
         }
-
         .container {
           width: 90%;
           max-width: 400px;
@@ -34,43 +28,21 @@
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
           background: #fafafa;
         }
-
-        .back-button {
-          position: absolute;
-          top: 25px;
-          left: 25px;
-          background: none;
-          border: none;
-          font-size: 20px;
-          cursor: pointer;
-          color: #333;
-          transition: transform 0.2s ease;
-        }
-
-        .back-button:hover {
-          transform: translateX(-3px);
-        }
-
         h1 {
           font-size: 28px;
           margin-bottom: 30px;
           font-weight: 600;
           text-align: center;
-          letter-spacing: -0.5px;
         }
-
         .form-group {
           margin-bottom: 20px;
         }
-
         .form-group label {
           display: block;
           margin-bottom: 8px;
           font-size: 14px;
           color: #555;
-          margin-left: 3px;
         }
-
         .form-group input {
           width: 100%;
           padding: 14px;
@@ -78,25 +50,14 @@
           border: 1px solid #eaeaea;
           font-size: 15px;
           background: #f8f8f8;
-          transition: all 0.3s ease;
         }
-
         .form-group input:focus {
           outline: none;
           border-color: #111;
           background: #f5f5f5;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
-
-        .error-message {
-          color: #e74c3c;
-          font-size: 13px;
-          margin-top: 5px;
-          display: none;
-          padding-left: 3px;
-        }
-
-        .login-btn {
+        .signup-btn {
           background: #111;
           color: #fff;
           border: none;
@@ -106,65 +67,63 @@
           font-size: 16px;
           font-weight: 500;
           cursor: pointer;
-          transition: all 0.3s ease;
           margin-top: 10px;
         }
-
-        .login-btn:hover {
+        .signup-btn:hover {
           background: #222;
-          transform: translateY(-2px);
         }
-
-        .signup-link {
+        .alt-link {
           text-align: center;
           margin-top: 25px;
           font-size: 14px;
           color: #666;
         }
-
-        .signup-link a {
+        .alt-link a {
           color: #111;
           text-decoration: none;
           font-weight: 500;
         }
-
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        .success-message {
+          color: green;
+          font-size: 14px;
+          text-align: center;
+          margin-bottom: 20px;
+          display: none;
         }
-
-        .shake {
-          animation: shake 0.5s;
+        .error-message {
+          color: #e74c3c;
+          font-size: 13px;
+          display: none;
+          margin-top: 10px;
+          text-align: center;
         }
     </style>
 </head>
 <body>
-<button type="button" class="back-button" onclick="navigateBack()">&larr;</button>
-
 <div class="container">
-    <h1>Login</h1>
-
-    <form id="loginForm">
+    <h1>Become a Listener</h1>
+    <div class="success-message" id="successMessage">Account created! Redirecting to login...</div>
+    <form id="listenerSignupForm">
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required />
+        </div>
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" autocomplete="username">
-            <div class="error-message" id="usernameError">Invalid username</div>
+            <input type="text" id="username" required />
         </div>
-
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" autocomplete="current-password">
-            <div class="error-message" id="passwordError">Incorrect password</div>
+            <input type="password" id="password" required />
         </div>
-
-        <div class="error-message" id="generalError">Login failed. Please check your credentials.</div>
-
-        <button type="submit" class="login-btn">Log In</button>
+        <button type="submit" class="signup-btn">Sign Up</button>
     </form>
-
-    <div class="signup-link">
-        Don't have an account? <a href="signup.html">Sign Up</a>
+    <div class="alt-link">
+        Already a listener? <a href="listener-login.html">Log In</a>
     </div>
 </div>
 

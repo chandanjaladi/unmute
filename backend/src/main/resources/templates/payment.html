@@ -157,71 +157,43 @@
   </style>
 </head>
 <body>
-  <button class="back-button" onclick="navigateBack()">←</button>
-  
-  <div class="container">
-    <h1>payment</h1>
-    
-    <div class="payment-options">
-      <div class="payment-option">
-        <i class="fa-brands fa-cc-visa"></i>
-        <p>Card</p>
-      </div>
-      <div class="payment-option">
-        <i class="fa-brands fa-paypal"></i>
-        <p>PayPal</p>
-      </div>
-      <div class="payment-option">
-        <i class="fa-solid fa-wallet"></i>
-        <p>Wallet</p>
-      </div>
-    </div>
-    
-    <div class="details">
-      <h3>session details</h3>
-      <div class="detail-row">
-        <span class="label">Language</span>
-        <span class="value" id="sessionLanguage">Telugu</span>
-      </div>
-      <div class="detail-row">
-        <span class="label">Duration</span>
-        <span class="value" id="sessionDuration">30 mins</span>
-      </div>
-      <div class="detail-row">
-        <span class="label">Base price</span>
-        <span class="value">$4.99</span>
-      </div>
-      <div class="detail-row">
-        <span class="label">Service fee</span>
-        <span class="value">$0.50</span>
-      </div>
-      <div class="total-row">
-        <span>Total</span>
-        <span>$5.49</span>
-      </div>
-    </div>
-    
-    <button class="checkout-btn">proceed to checkout</button>
-    
-    <p class="coming-soon">This is a demo. Actual payment processing coming soon.</p>
-  </div>
-  
-  <script>
-    // Pull language and duration from URL params or localStorage if implemented
-    document.addEventListener('DOMContentLoaded', function() {
-      // For demo: Get from localStorage if available
-      const language = localStorage.getItem('selectedLanguage') || 'Telugu';
-      const duration = localStorage.getItem('selectedDuration') || '30 mins';
-      
-      document.getElementById('sessionLanguage').textContent = language;
-      document.getElementById('sessionDuration').textContent = duration;
-    });
+<button class="back-button" onclick="navigateBack()">←</button>
 
-    function navigateBack() {
-    // Ensure we use the returningFromPayment flag even when using back button
+<div class="container">
+  <h1>payment</h1>
+
+  <div class="payment-options">
+    <div class="payment-option"><i class="fa-brands fa-cc-visa"></i><p>Card</p></div>
+    <div class="payment-option"><i class="fa-brands fa-paypal"></i><p>PayPal</p></div>
+    <div class="payment-option"><i class="fa-solid fa-wallet"></i><p>Wallet</p></div>
+  </div>
+
+  <div class="details">
+    <h3>session details</h3>
+    <div class="detail-row"><span class="label">Language</span><span class="value" id="sessionLanguage">Telugu</span></div>
+    <div class="detail-row"><span class="label">Duration</span><span class="value" id="sessionDuration">30 mins</span></div>
+    <div class="detail-row"><span class="label">Base price</span><span class="value">$4.99</span></div>
+    <div class="detail-row"><span class="label">Service fee</span><span class="value">$0.50</span></div>
+    <div class="total-row"><span>Total</span><span>$5.49</span></div>
+  </div>
+
+  <button class="checkout-btn">proceed to checkout</button>
+  <p class="coming-soon">This is a demo. Actual payment processing coming soon.</p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const language = localStorage.getItem('selectedLanguage') || 'Telugu';
+    const duration = localStorage.getItem('selectedDuration') || '30 mins';
+    document.getElementById('sessionLanguage').textContent = language;
+    document.getElementById('sessionDuration').textContent = duration;
+  });
+
+  function navigateBack() {
     sessionStorage.setItem('returningFromPayment', 'true');
     window.location.href = 'index.html';
   }
-  </script>
+</script>
+<script src="/script.js"></script>
 </body>
 </html>
