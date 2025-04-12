@@ -168,45 +168,6 @@
     </div>
 </div>
 
-<script>
-    console.log("Login page JS loaded");
-
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value;
-
-      fetch('http://localhost:8080/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username, password })
-      })
-      .then(res => {
-        if (!res.ok) return res.text().then(msg => { throw new Error(msg); });
-        return res.json();
-      })
-      .then(user => {
-        localStorage.setItem('unmute_currentUser', JSON.stringify({
-          name: user.name,
-          email: user.email,
-          username: user.username,
-          isLoggedIn: true
-        }));
-        window.location.href = 'index.html';
-      })
-      .catch(err => {
-        const errBox = document.getElementById('generalError');
-        errBox.textContent = err.message;
-        errBox.style.display = 'block';
-      });
-    });
-
-    function navigateBack() {
-      window.location.href = 'index.html';
-    }
-</script>
+<script src="/script.js"></script>
 </body>
 </html>

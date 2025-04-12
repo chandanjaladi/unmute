@@ -58,4 +58,14 @@ public class User {
     private String email;
     private String username;
     private String password;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    private String role;
 }

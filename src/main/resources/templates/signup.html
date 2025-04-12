@@ -172,45 +172,6 @@
     </div>
 </div>
 
-<script>
-    console.log("Signup page JS loaded");
-
-    document.getElementById('signupForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirmPassword').value;
-
-      if (password !== confirmPassword) {
-        alert("Passwords do not match");
-        return;
-      }
-
-      fetch('http://localhost:8080/api/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, email, username, password })
-      })
-      .then(res => {
-        if (!res.ok) return res.text().then(msg => { throw new Error(msg); });
-        return res.text();
-      })
-      .then(msg => {
-        document.getElementById('successMessage').style.display = 'block';
-        this.reset();
-        setTimeout(() => window.location.href = 'login.html', 2000);
-      })
-      .catch(err => alert("Signup failed: " + err.message));
-    });
-
-    function navigateBack() {
-      window.location.href = 'index.html';
-    }
-</script>
+<script src="/script.js"></script>
 </body>
 </html>
